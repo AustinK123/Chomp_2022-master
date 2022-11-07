@@ -4,9 +4,9 @@ public class MyPlayer {
     public Chip[][] gameBoard;
     public int[] columns;
 
-    public int a;
-    public int b;
-    public int c;
+    public int col1;
+    public int col2;
+    public int col3;
 
     public MyPlayer() {
         columns = new int[10];
@@ -16,7 +16,6 @@ public class MyPlayer {
          * Add your code here.
          */
         printBoards();
-        printResultBoards();
     }
 
     public Point move(Chip[][] pBoard) {
@@ -48,32 +47,50 @@ public class MyPlayer {
         for(int columnOne = 1; columnOne <= 3; columnOne++){
             for(int columnTwo = 0; columnTwo <= columnOne; columnTwo++){
                 for(int columnThree = 0;columnThree <= columnTwo; columnThree++){
-//                    if(columnOne >= columnTwo && columnTwo >= columnThree){
-//                    columnOne = a;
-//                    columnTwo = b;
-//                    columnThree = c;
+
                         System.out.println(boardnum + " - board: " + columnOne + columnTwo + columnThree);
+
                         boardnum++;
-//                    }
+
+                        col1 = columnOne;
+                        col2 = columnTwo;
+                        col3 = columnThree;
+
+                    printResultBoards(col1,col2,col3);
                 }
             }
         }
         System.out.println("***********************");
     }
 
-    public void printResultBoards(){
-        int a = 3;
-        int b = 3;
-        int c = 3;
-        for(int loopc = 0; loopc <= 3; loopc ++){
-            System.out.println("resultboard: " + a + b + (c-loopc));
+    public void printResultBoards(int a, int b, int c){
+
+        for(int loopc = c-1; loopc >= 0; loopc --){
+            System.out.println("resultboard: " + a + b + loopc);
         }
-        c = 3;
-        for(int loopb = 0; loopb <= 3; loopb ++){
+
+        for(int loopb = b-1; loopb >= 0; loopb --){
             if(loopb < c){
-                System.out.println("resultboard: " + a + b + (b-loopb));
+                System.out.println("resultboard: " + a + loopb + loopb);
+            }
+            else{
+                System.out.println("resultboard: " + a + loopb + c);
             }
         }
+
+        for(int loopa = a-1; loopa >= 1; loopa --){
+            if(loopa < b || b < c){
+                System.out.println("resultboard: " + a + loopa + loopa);
+            }
+            else{
+                System.out.println("resultboard: " + loopa + b + c);
+            }
+        }
+        System.out.println("**************************************************************************************************");
+    }
+
+    public void winningBoards(){
+
     }
 
 }
