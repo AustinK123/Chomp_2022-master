@@ -32,6 +32,9 @@ public class Chomp implements Runnable, MouseListener {
     final int chipWidth = 50;
     final int chipBorder = 4;
 
+    //image
+    public Image sad;
+
     //Declare the variables needed for the graphics
     public JFrame frame;
     public Canvas canvas;
@@ -69,7 +72,9 @@ public class Chomp implements Runnable, MouseListener {
 
         setUpGraphics();
 
-        board = new Chip[10][10];
+        sad = Toolkit.getDefaultToolkit().getImage("sad.png");
+
+        board = new Chip[3][3];
         for (int r = 0; r < board[0].length; r++) {
             for (int c = 0; c < board[0].length; c++) {
                 board[r][c] = new Chip(r, c, xOffset, yOffset, chipWidth);
@@ -84,13 +89,7 @@ public class Chomp implements Runnable, MouseListener {
         randomPlayer = new RandomPlayer();
         aiPlayer = new MyPlayer();
 
-
-    }//
-
-//*******************************************************************************
-//User Method Section
-//
-// put your code to do things here.
+    }
 
     public void updateBoard(int rowParameter, int columnParameter) {
         int row = rowParameter;
@@ -143,6 +142,8 @@ public class Chomp implements Runnable, MouseListener {
         g.setStroke(new BasicStroke(5));
         g.drawRect(xOffset - 10, yOffset - 10, 500 + 20, 500 + 20);
 
+
+
         if(!gameOver) {
             g.setStroke(new BasicStroke(2));
             //draw Grid
@@ -178,6 +179,9 @@ public class Chomp implements Runnable, MouseListener {
                 g.drawOval(board[0][0].xpos + chipBorder, board[0][0].ypos + chipBorder, chipWidth - 2 * chipBorder, chipWidth - 2 * chipBorder);
                 //g.drawRect(board[r][c].xpos,board[r][c].ypos,chipWidth,chipWidth);
             }
+
+
+
         }
         
         if (gameOver) {
