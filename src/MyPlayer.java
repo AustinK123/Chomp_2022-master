@@ -83,9 +83,6 @@ public class MyPlayer {
     }
 
 
-
-
-
     public void printBoards(){
         int boardnum = 1;
         for(int columnOne = 1; columnOne <= 3; columnOne++){
